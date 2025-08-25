@@ -1,0 +1,102 @@
+---
+title: "Green_Bud_L13"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    echo: true
+    code-line-numbers: true
+    output-location: column
+    highlight-style: github
+    code-fold: true
+---
+
+## Slide 1
+
+```{r}
+ #| echo: true
+ #| code-line-numbers: '16-35'
+library(tidyverse)
+library(patchwork)
+
+data(mpg)
+
+class_dat <- mpg |>
+  group_by(class) |>
+  summarise(
+    n = n(),
+    mean_hwy = mean(hwy),
+    label = str_c("n = ", n, sep = "")
+  )
+
+ggplot(data = mpg, aes(class, hwy)) +
+  geom_point(position = position_jitter(width = 0.1)) +
+  geom_point(
+    data = class_dat,
+    mapping = aes(y = mean_hwy),
+    size = 5,
+    alpha = 0.6,
+    color = "red") +
+  labs(
+    x = "Vehicle class",
+    y = "Highway miles per gallon"
+  ) +
+  theme_minimal() +
+  geom_text(
+    data = class_dat,
+    aes(x = class, y = 10, label = label)
+  ) +
+  scale_y_continuous(
+    limits = c(10, 45)
+  )
+```
+
+## Slide 2 {.scrollable}
+
+-   abc
+
+::: incremental
+-   def
+
+-   ghi
+
+-   jkl
+
+-   mno
+
+-   pqrs
+
+-   tuv
+
+-   wxyz
+
+-   123
+
+-   456
+
+-   789
+
+-   \*0#
+:::
+
+## Slide 3
+
+::: columns
+::: {.column width="60%"}
+left column
+
+I'm blue, da ba dee da ba diDa ba dee da ba di, da ba dee da ba diDa ba dee da ba di, da ba dee da ba diDa ba dee da ba di, da ba dee da ba diI'm blue, da ba dee da ba diDa ba dee da ba di, da ba dee da ba diDa ba dee da ba di, da ba dee da ba diDa ba dee da ba di, da ba dee da ba di
+:::
+
+::: {.column width="40%"}
+right column
+:::
+:::
+
+## Slide 4 {background-image="https://t3.ftcdn.net/jpg/02/09/02/88/360_F_209028852_C7ZkgxlD0kl0RVQIvmKKUBq3of3o1TW4.jpg"}
+
+very important information
+
+::: aside
+this is less important, but it's very hard to see because it's grey
+:::
